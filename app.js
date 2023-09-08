@@ -11,7 +11,7 @@ const morgan = require("morgan");
 
 const app = express();
 corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["*"],
   credentials: true,
   methods: ["GET", "POST"],
 };
@@ -19,7 +19,7 @@ corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
 app.use(bodyParser.json());
-app.use(morgan);
+app.use(morgan('tiny'));
 // app.use(cookieParser);
 
 const mongoUrl = process.env.MONGO_URL;
