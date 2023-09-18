@@ -18,7 +18,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://diet-application.netlify.app/",
+    origin: "https://diet-application.netlify.app",
     credentials: true,
     optionSuccessStatus: 200,
   })
