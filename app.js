@@ -1,5 +1,5 @@
-const dotenv = require("dotenv")
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
 const express = require("express");
 const cors = require("cors");
@@ -10,27 +10,33 @@ const morgan = require("morgan");
 // const cookieParser = require("cookie-parser")
 
 const app = express();
-corsOptions = {
-  origin: ["*"],
-  credentials: true,
-  methods: ["GET", "POST"],
-};
+// corsOptions = {
+//   origin: ["localhost:3000"],
+//   credentials: true,
+//   methods: ["GET", "POST"],
+// };
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://diet-application.netlify.app/",
+    credentials: true,
+    optionSuccessStatus: 200,
+  })
+);
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
 app.use(bodyParser.json());
-app.use(morgan('tiny'));
+app.use(morgan("tiny"));
 // app.use(cookieParser);
 
-const mongoUrl = process.env.MONGO_URL;
-mongoose.connect(mongoUrl);
+// const mongoUrl = process.env.MONGO_URL;
+// mongoose.connect(mongoUrl);
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-  console.log("Connected successfully");
-});
+// db.on("error", console.error.bind(console, "connection error: "));
+// db.once("open", function () {
+//   console.log("Connected successfully");
+// });
 
 app.use("/api/v1", router);
 
